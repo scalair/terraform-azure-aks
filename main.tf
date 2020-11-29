@@ -72,7 +72,7 @@ resource "azurerm_kubernetes_cluster" "this" {
   dynamic network_profile {
     for_each = var.network_profile != {} ? ["present"] : []
     content {
-      network_plugin        = lookup(var.network_profile, "plugin", null)
+      network_plugin        = lookup(var.network_profile, "plugin", "kubenet")
       network_policy        = lookup(var.network_profile, "policy", null)
       dns_service_ip        = lookup(var.network_profile, "dns_service_ip", null)
       docker_bridge_cidr    = lookup(var.network_profile, "docker_bridge_cidr", null)
